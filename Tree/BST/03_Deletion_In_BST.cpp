@@ -107,7 +107,72 @@ Node *deleteNode(Node *root, int key)
         Node *temp = minValNode(root->right);
         cout << temp->val << endl;
         root->val = temp->val;
+        //* We recursively delete inorder successor because successor will be always left child of it's parent but it can have right
         root->right = deleteNode(root->right, temp->val);
+    }
+    return root;
+}
+
+//! Problem: Recursive deleting successor is not efficient
+
+//~ Approach-2 :- Since successor is always left child of its parent we can safely make successor's right child as left of its parent.
+
+//* If there is no succ, then assign succ->right to succParent->right
+
+Node *deleteNodeEff(Node *root, int key)
+{
+    //* key doesn't exist
+    if (root == NULL)
+    {
+        return root;
+    }
+    if (key < root->val)
+    {
+        root->left = deleteNode(root->left, key);
+        return root;
+    }
+    else if (key > root->val)
+    {
+        root->right = deleteNode(root->right, key);
+        return root;
+    }
+    else
+    {
+        //* If only one child or no child
+        //* in case of no child temp will be null!!
+        if (root->left == NULL)
+        {
+            Node *temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if (root->right == NULL)
+        {
+            Node *temp = root->left;
+            free(root);
+            return temp;
+        }
+        else
+        {
+            Node *succParent = root;
+            Node *succ = root->right;
+            while (succ->left != NULL)
+            {
+                succParent = succ;
+                succ = succ->left;
+            }
+            if (succParent != root)
+            {
+                succParent->left = succ->right;
+            }
+            else
+            {
+                succParent->right = succ->right;
+            }
+            root->val = succ->val;
+            delete succ;
+            return root;
+        }
     }
     return root;
 }
