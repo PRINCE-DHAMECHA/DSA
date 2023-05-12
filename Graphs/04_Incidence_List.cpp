@@ -1,4 +1,4 @@
-//~ Incidency List
+//~ Incidence List
 //* A list which stores for each vertex a list of objects representing the edges incident to that vertex
 
 //* if A->B
@@ -44,7 +44,9 @@ int main()
     {
         cout << i;
         for (int j = 0; j < graph[i].size(); j++)
+        {
             cout << " --> ( " << graph[i][j].first << "," << graph[i][j].second << " )";
+        }
         cout << endl;
     }
 
