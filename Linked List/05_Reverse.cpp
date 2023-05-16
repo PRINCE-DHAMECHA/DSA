@@ -56,6 +56,50 @@ void reverseIT(Node **headRef)
     *headRef = prev;
 }
 
+//~ Approach:3 :-
+Node *reverseRec(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+    //* Eventually we need to return last node, so that head can point into that
+    Node *rest = reverseRec(head->next);
+    head->next->next = head;
+    //* We set next of current to NULL because next of current will be decided by previous call i.e. in above step
+    head->next = NULL;
+    //* Return last node
+    return rest;
+}
+
+void reverseTailRec(Node *curr, Node *prev, Node **head)
+{
+    //* Last Node
+    if (!curr->next)
+    {
+        //* Make head to point curr // last ndoe
+        *head = curr;
+        curr->next = prev;
+        return;
+    }
+    Node *next = curr->next;
+    curr->next = prev;
+    reverseTailRec(next, curr, head);
+}
+
+void reverseTailRec(Node **head)
+{
+    if (!head)
+    {
+        return;
+    }
+    reverseTailRec(*head, NULL, head);
+}
+
+//~ Approach:4 :-
+//* Use stack to store element and create new list while popping
+//* Noob Approach
+
 int main()
 {
     __DONT_RAISE_YOUR_VOICE__IMPROVE_YOUR_ARGUMENT__$;
@@ -68,6 +112,12 @@ int main()
     printList(head);
     reverseIT(&head);
     cout << endl;
+    printList(head);
+    cout << endl;
+    head = reverseRec(head);
+    printList(head);
+    cout << endl;
+    reverseTailRec(&head);
     printList(head);
     return 0;
 }
