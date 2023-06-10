@@ -44,7 +44,7 @@ int main()
 {
     __DONT_RAISE_YOUR_VOICE__IMPROVE_YOUR_ARGUMENT__$;
 
-    vector<int> nums = {10, 7, 8, 9, 1, 5};
+    vector<int> nums = {10, 33, 3, 4, 24, 4, 5, 5, 7, 8, 9, 1, 5};
 
     QS(nums, 0, nums.size() - 1);
     cout << "Sorted array: " << endl;
