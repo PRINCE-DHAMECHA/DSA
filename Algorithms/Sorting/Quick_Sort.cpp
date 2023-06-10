@@ -8,18 +8,23 @@ using namespace std;
     ios::sync_with_stdio(0);                              \
     cin.tie(0)
 
+//* We consider last element as pivot
 int partition(vector<int> &nums, int low, int high)
 {
     int pivot = nums[high];
+    //* Last index where smaller element inserted
     int i = (low - 1);
     for (int j = low; j < high; j++)
     {
+        //* If we find any element less than pivot then we add that after i
         if (nums[j] < pivot)
         {
             swap(nums[++i], nums[j]);
         }
     }
+    //* at last we swap i+1 that will be larger than pivot or can be equals to pivot with pivot so pivot will be it's right position
     swap(nums[i + 1], nums[high]);
+    //* Return index of pivot
     return i + 1;
 }
 
@@ -27,7 +32,9 @@ void QS(vector<int> &nums, int low, int high)
 {
     if (low < high)
     {
+        //* fix position of pivot
         int pi = partition(nums, low, high);
+        //* sort both sides
         QS(nums, low, pi - 1);
         QS(nums, pi + 1, high);
     }
