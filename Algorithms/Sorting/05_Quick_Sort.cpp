@@ -55,3 +55,11 @@ int main()
 
     return 0;
 }
+
+//~ Time Complexity:
+//* Best Case: \omega (N * log N)
+//* Average Case: \Theta (N * log N)
+//* Worst Case: O(N2)
+
+//~ Space Complexity:
+//* O(log N)
