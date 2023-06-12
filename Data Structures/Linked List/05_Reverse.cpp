@@ -56,7 +56,7 @@ void reverseIT(Node **headRef)
     *headRef = prev;
 }
 
-//~ Approach:3 :-
+//~ Approach:2 :-
 Node *reverseRec(Node *head)
 {
     if (head == NULL || head->next == NULL)
@@ -72,12 +72,13 @@ Node *reverseRec(Node *head)
     return rest;
 }
 
+//~ Approach:3 :-
 void reverseTailRec(Node *curr, Node *prev, Node **head)
 {
     //* Last Node
     if (!curr->next)
     {
-        //* Make head to point curr // last ndoe
+        //* Make head to point curr // last node
         *head = curr;
         curr->next = prev;
         return;
