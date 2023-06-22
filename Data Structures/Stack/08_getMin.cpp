@@ -97,8 +97,9 @@ int MyStack::pop()
     s.pop();
     if (t < minEle)
     {
+        int mini = minEle;
         minEle = 2 * minEle - t;
-        return minEle;
+        return mini;
     }
     return t;
 }
@@ -109,11 +110,13 @@ int main()
     MyStack s;
     s.push(3);
     s.push(5);
+    s.push(2);
+    cout << s.pop() << endl;
     cout << s.getMin() << endl;
     s.push(2);
     s.push(1);
     cout << s.getMin() << endl;
-    s.pop();
+    cout << s.pop() << endl;
     cout << s.getMin() << endl;
     s.pop();
     s.peek();
