@@ -26,11 +26,11 @@ vector<int> Dijkstra(vector<vector<pair<int, int>>> &graph, int start)
     vector<int> dist(graph.size(), INT_MAX);
     //* For avoiding linear search to find min dist node we can use priority queue
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    pq.push({start, 0});
+    pq.push({0, start});
     dist[start] = 0;
     while (!pq.empty())
     {
-        int u = pq.top().first;
+        int u = pq.top().second;
         pq.pop();
         for (auto i : graph[u])
         {
@@ -39,7 +39,7 @@ vector<int> Dijkstra(vector<vector<pair<int, int>>> &graph, int start)
             if (dist[v] > dist[u] + weight)
             {
                 dist[v] = dist[u] + weight;
-                pq.push({v, dist[v]});
+                pq.push({dist[v], v});
             }
         }
     }
